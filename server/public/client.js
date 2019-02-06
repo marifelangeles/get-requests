@@ -8,18 +8,29 @@ function docReady() {
         // where to go to get info and what method to use (CRUD) 
         url: '/quotes',
         method: 'GET'
-    }).then(function () {     // then something else will happen
+    // then (a promise) something else will happen
+    // 
+    }).then(function (response) {     
         console.log('The quotes get request worked!');
+        // now have access to array of objects
+        console.log(response);
+        // loop through quotes array
+        for (let i = 0; i < response.length; i++) {
+            console.log(response[i]);
+            
+            // display quote in table
+            $('#quoteTableBody').append(`
+            <tr>
+                <td>
+                    ${response[i].quote}
+                </td>
+                <td>${response[i].author}</td>
+            </tr>
+            `);
+        } // end loop
+        
     }); 
 
-    // display quote in table
-    $('#quoteTableBody').append(`
-    <tr>
-        <td>
-            Remember there's no such thing as a small act of kindness. Every act creates a ripple with no logical end.
-        </td>
-        <td>Scott Adams</td>
-    </tr>
-    `);
+    
     
 } // end docReady
