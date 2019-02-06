@@ -1,8 +1,10 @@
 let express = require('express');
+let PORT = 5000;
 let app = express();
 app.use(express.static('server'));
-app.listen(5000, function () {
-    console.log('Running on port 5000');
+
+app.listen(PORT, () => {
+    console.log('Running on ' + PORT);
 
 });
 
@@ -13,6 +15,7 @@ let quotes_data = [
 ];
 
 app.get('/quotes', function (req, res) {
+    //res.sendStatus(200); 
     res.send(quotes_data);
     
 });
